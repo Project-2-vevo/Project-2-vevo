@@ -68,27 +68,20 @@ authRoutes.post("/login", passport.authenticate("local", {
     failureRedirect: "/auth/login"
 }));
 
-/* CRUD -> READ DETAIL */
-authRoutes.get('/onlyMe/:id', (req,res) => {
-    const userId = req.params.id;
-  
-    Product.findById(userId, (err, user) => {
-      if (err) { return next(err); }
-    //   Review.find({user:userId}, (err,reviews) =>{
+
+               
+//   Review.find({user:userId}, (err,reviews) =>{ 
     //     let num_stars = reviews.reduce((acc,e) => acc+e.stars,0);
-        res.render('onlyMe/detail', { user: user,});
-      })
-    });
  
   
   
-//   /* CRUD -> UPDATE FORM */
+  /* CRUD -> UPDATE FORM */
 //   authRoutes.get('/onlyMe/:id/edit', (req,res) => {
-//     const productId = req.params.id;
-//     Product.findById(productId, (err, product) => {
+//     const userId = req.params.id;
+//     User.findById(userId, (err, product) => {
 //       if (err) { return next(err); }
-//       res.render('products/update', { product: product });
-//     });
+//       res.render('detail', { user: user });
+//     }); 
 //   })
   
   
