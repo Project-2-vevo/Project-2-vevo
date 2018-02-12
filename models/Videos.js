@@ -6,7 +6,7 @@ const videoSchema = new Schema({
     creatorId: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-    }, comments: [Comment.schema]
+    }, comments: {type:String, ref:'Comment'}
 })
 
 
