@@ -18,6 +18,7 @@ authRoutes.get("/signup", (req, res, next) => {
 
 authRoutes.post("/signup", (req, res, next) => {
     const email = req.body.email;
+    const videos = req.body.videos;
     const username = req.body.username;
     const password = req.body.password;
     console.log("hola")
@@ -42,11 +43,12 @@ authRoutes.post("/signup", (req, res, next) => {
         const newUser = new User({
             email,
             username,
+            videos,
             password: hashPass,
-            profile_pic: {
-                pic_path: `/uploads/${req.file.filename}`,
-                pic_name: req.body.name
-            }
+            // profile_pic: {
+            //     pic_path: `/uploads/${req.file.filename}`,
+            //     pic_name: req.body.name
+            // }
         });
 
         newUser.save((err) => {

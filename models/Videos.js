@@ -3,10 +3,11 @@ const Schema = mongoose.Schema;
 
 const videoSchema = new Schema({
     name: String,
+    link: String,
     creatorId: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-    }, comments: {type:String, ref:'Comment'}
+    }, comments: { type: String, ref: 'Comment' },
 })
 
 

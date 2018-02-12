@@ -21,6 +21,7 @@ console.log("hola")
 const index = require('./routes/index');
 const auth = require('./routes/auth');
 const user = require('./routes/users')
+const video = require('./routes/video')
 
 const app = express();
 
@@ -58,6 +59,7 @@ app.use((req,res,next) => {
 app.use('/', index);
 app.use('/auth', auth);
 app.use('/user', user);
+app.use('/video', video);
 
 
 // catch 404 and forward to error handler

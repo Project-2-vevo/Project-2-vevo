@@ -1,0 +1,17 @@
+
+<body>
+  <iframe width="300" height="180" src="http://www.youtube.com/embed/Jj6Km4beFhU" frameborder="0"></iframe>
+  
+  </html>
+  <ul>
+    <ul>
+      <% vid.forEach((video) => { %>
+        <li>
+          <%= video.name %>
+          
+          <iframe width="300" height="180" src="http://www.youtube.com/embed/ <%= video.link.slice(32,video.link.length) %>" frameborder="0"></iframe>
+          
+        </li>
+        <%  }) %>
+      </ul>
+    </body>
