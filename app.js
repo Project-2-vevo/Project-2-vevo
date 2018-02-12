@@ -16,7 +16,7 @@ const {dbURL} = require('./config');
 mongoose.connect(dbURL)
         .then(() => debug(`Connected to ${dbURL}`))
         .catch(e => console.log(e))
-
+console.log("hola")
 
 const index = require('./routes/index');
 const auth = require('./routes/auth');
