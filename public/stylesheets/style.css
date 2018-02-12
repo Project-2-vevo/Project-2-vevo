@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+.submit{
+  background-color: rgb(62, 62, 201);
+
+  color :white;
+  padding:8px 40px;
+ 
+}

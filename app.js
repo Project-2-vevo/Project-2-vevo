@@ -6,6 +6,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const expressLayouts = require('express-ejs-layouts');
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const debug = require('debug')(`m2-0118-passport-auth:${path.basename(__filename).split('.')[0]}`)
@@ -25,6 +26,9 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.set('layout', 'layouts/main-layout');
+app.use(expressLayouts);
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
