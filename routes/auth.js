@@ -1,9 +1,16 @@
 const express = require("express");
 const authRoutes = express.Router();
+const path = require('path');
+const multer = require('multer');
 const bcrypt = require("bcrypt");
 const passport = require('passport')
 const User = require("../models/User");
 const bcryptSalt = 10;
+
+const myUploader = multer({
+    dest: path.join(__dirname, '../public/uploads')
+  });
+  
 
 authRoutes.get("/signup", (req, res, next) => {
     res.render("auth/signup");
@@ -34,7 +41,11 @@ authRoutes.post("/signup", (req, res, next) => {
         const newUser = new User({
             email,
             username,
-            password: hashPass
+            password: hashPass,
+            profile_pic: {
+                pic_path: `/uploads/${req.file.filename}`,
+                pic_name: req.body.name
+            }
         });
 
         newUser.save((err) => {
@@ -56,6 +67,47 @@ authRoutes.post("/login", passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/auth/login"
 }));
+
+/* CRUD -> READ DETAIL */
+authRoutes.get('/onlyMe/:id', (req,res) => {
+    const userId = req.params.id;
+  
+    Product.findById(userId, (err, user) => {
+      if (err) { return next(err); }
+    //   Review.find({user:userId}, (err,reviews) =>{
+    //     let num_stars = reviews.reduce((acc,e) => acc+e.stars,0);
+        res.render('onlyMe/detail', { user: user,});
+      })
+    });
+ 
+  
+  
+//   /* CRUD -> UPDATE FORM */
+//   authRoutes.get('/onlyMe/:id/edit', (req,res) => {
+//     const productId = req.params.id;
+//     Product.findById(productId, (err, product) => {
+//       if (err) { return next(err); }
+//       res.render('products/update', { product: product });
+//     });
+//   })
+  
+  
+//   /* CRUD -> UPDATE DATABASE */
+//   authRoutes.post('/onlyMe/:id/edit', (req,res) => {
+//     const productId = req.params.id;
+//     const {name,price,imageUrl,description} = req.body;
+//     const updates = {name,price,imageUrl,description};
+  
+//     Product.findByIdAndUpdate(productId, updates, (err, product) => {
+//       if (err){ return next(err); }
+//       return res.redirect('/');
+//     });
+//   })
+  
+
+
+
+
 
 authRoutes.get("/logout", (req, res) => {
     req.logout();

@@ -1,0 +1,15 @@
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+
+const videoSchema = new Schema({
+    name: String,
+    creatorId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    }, comments: [Comment.schema]
+})
+
+
+const Video = mongoose.model('Video', videoSchema);
+
+module.exports = Video;

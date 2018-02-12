@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 const expressLayouts = require('express-ejs-layouts');
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
-const debug = require('debug')(`m2-0118-passport-auth:${path.basename(__filename).split('.')[0]}`)
+const debug = require('debug')(`project-2:${path.basename(__filename).split('.')[0]}`)
 const passportConfig = require('./passport')
 const {dbURL} = require('./config');
 
