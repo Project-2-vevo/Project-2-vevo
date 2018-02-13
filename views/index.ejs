@@ -1,26 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-  </head>
-  <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-    <% if(!user) { %>
+    <% if(user) { %>
       <ul>
-        <li><a href="/auth/login">Login</a></li>
-        <li><a href="/auth/signup">Signup</a></li>
+        <h2>Hi <%= user.username %>!</h2>
       </ul>
-    <% } else { %>
-      <h2>Hi <%= user.username %>!</h2>
-
-    </br>
-      <!-- <a href="/private">Ver a los simpson</a> -->
-      <a href="/user/detail/<%= user._id %>">Profile</a>
-      <br>
-      <a href="/video/myvideos/<%= user._id %>">MyVideos</a>
-      <br>
-      <a href="/auth/logout">Logout</a>
-    <% } %>
-  </body>
-</html>   
+    <% }%>
+    
+  
+    
+  

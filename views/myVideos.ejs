@@ -1,16 +1,16 @@
 <div class="display-vid">
 <ul>
-  <% videos.forEach((vid) => { %>
+  <% videos.reverse().forEach((vid) => { %>
     <li>
       <%= vid.name %>
         <br>
         <a href="/video/delete/<%=vid._id%>">Delete Video</a>
+        <a href="/video/detail-video/<%=vid._id%>">Detail Video</a>
         <br>
         <br>
         <iframe width="300" height="180" src="http://www.youtube.com/embed/<%= vid.link.slice(32,vid.link.length)%>" frameborder="0">
         </iframe>
-
-        <img src="<%= vid.link %>" width=100/>
+       
     </li>
 
 
