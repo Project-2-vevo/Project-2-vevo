@@ -16,22 +16,36 @@ router.get('/myvideos/:id', (req, res) => {
     // console.log(req)
     Video.find({ creatorId: userId }, (err, videos) => {
         if (err) { return next(err); }
-        console.log({ videos })
+        
         res.render('myVideos', { videos: videos });
 
     })
 })
-// router.get("/myvideos/:id", (req, res, next) => {
-//     res.render("detail");
-// });
 
-// router.post('/myvideos/:id', (req, res, next) => {
-//     const userId = req.params.id;
-//     console.log(userId)
-//     Video.find({ creatorId: userId }, (err, videos) => {
-//         if (err) { return next(err); }
-//         res.render("myVideos", { videos: videos })
-//     })
-// })
+
+router.post('/myvideos/:id', (req, res, next) => {
+    //console.log(req.body.link)
+    const userId = req.params.id;
+    const link = req.body.link;
+    const name = req.body.name;
+
+    Video.findOne({ creatorId: userId }, (err, videos) => {
+        if (err) { return next(err); }
+        console.log(link)
+        const newVideo = new Video({
+            name,
+            link,
+            creatorId: userId
+        })
+        newVideo.save((err) => {
+            if (err) {
+                res.render("myVideos", { message: "Something went wrong" });
+            } else {
+                res.redirect("/");
+            }
+        })
+    });
+})
+
 
 module.exports = router;
