@@ -1,17 +1,26 @@
 
-<body>
-  <iframe width="300" height="180" src="http://www.youtube.com/embed/Jj6Km4beFhU" frameborder="0"></iframe>
-  
-  </html>
-  <ul>
-    <ul>
-      <% vid.forEach((video) => { %>
-        <li>
-          <%= video.name %>
-          
-          <iframe width="300" height="180" src="http://www.youtube.com/embed/ <%= video.link.slice(32,video.link.length) %>" frameborder="0"></iframe>
-          
-        </li>
-        <%  }) %>
-      </ul>
-    </body>
+<ul>
+  <% videos.forEach((vid) => { %>
+      <li>
+      <%= vid.name %> <br>
+      <iframe width="300" height="180" src="http://www.youtube.com/embed/<%= vid.link.slice(32,vid.link.length)%>" frameborder="0">
+      </iframe>
+      
+      <img src="<%= vid.link %>" width=100/>
+      </li>
+  <%  }) %>
+</ul>
+
+
+<br>
+<br>
+<ul>
+  <form action="/video/myvideos/:id" method="POST" id="form-container">
+  <label for="link">video link</label>
+  <input id="link" type="text" name="link" placeholder="URL">
+  <br>
+  <label for="name">Video name</label>
+  <input id="name" type="text" name="name" placeholder="name">
+  <br>
+  <button>Create video</button>
+  </form>

@@ -5,10 +5,6 @@ const userSchema = new Schema({
     email: String,
     username: String,
     password: String,
-    videos: {
-        type: Schema.Types.ObjectId,
-        ref: 'Video'
-    },
     profile_pic: {
         pic_path: {
             type: String,

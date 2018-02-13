@@ -11,12 +11,12 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const debug = require('debug')(`project-2:${path.basename(__filename).split('.')[0]}`)
 const passportConfig = require('./passport')
-const {dbURL} = require('./config');
+const { dbURL } = require('./config');
 
 mongoose.connect(dbURL)
-        .then(() => debug(`Connected to ${dbURL}`))
-        .catch(e => console.log(e))
-console.log("hola")
+  .then(() => debug(`Connected to ${dbURL}`))
+  .catch(e => console.log(e))
+
 
 const index = require('./routes/index');
 const auth = require('./routes/auth');
@@ -50,11 +50,11 @@ app.use(session({
 }));
 passportConfig(app);
 
-app.use((req,res,next) => {
+app.use((req, res, next) => {
   res.locals.user = req.user;
   res.locals.title = 'Passport Auth 0118';
   next();
-}) 
+})
 
 app.use('/', index);
 app.use('/auth', auth);
@@ -63,14 +63,14 @@ app.use('/video', video);
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
