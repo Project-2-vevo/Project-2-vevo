@@ -46,35 +46,3 @@ newVideo3.save((err, user) => {
 });
 
 Video.collection.drop();
-
-// User.findOne({ username: "quiquemail" }).then(user => {
-//     const newVideo = new Video({
-//         user_id: user._id,
-//         user_name: user.username,
-//         tweet: "Benito"
-//     });
-//     newVideo.save((err, user) => {
-//         if (err) {
-//             throw err;
-//         } else {
-//             console.log(user._id)
-
-//         }
-//     });
-// });
-// User.findOne({ username: "quiquemail" }).then(user => {
-//     const newVideo = new Video({
-//         user_id: user._id,
-//         user_name: user.username,
-//         tweet: "Camela"
-//     });
-//     newVideo.save((err, user) => {
-//         if (err) {
-//             throw err;
-//         } else {
-//             console.log(user._id)
-
-//         }
-//     });
-// });
-

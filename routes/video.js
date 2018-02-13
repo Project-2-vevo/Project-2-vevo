@@ -13,7 +13,6 @@ router.get('/', function (req, res, next) {
 /* CRUD -> READ DETAIL */
 router.get('/myvideos/:id', (req, res) => {
     const userId = req.params.id;
-    // console.log(req)
     Video.find({ creatorId: userId }, (err, videos) => {
         if (err) { return next(err); }
         
@@ -24,14 +23,12 @@ router.get('/myvideos/:id', (req, res) => {
 
 
 router.post('/myvideos/:id', (req, res, next) => {
-    //console.log(req.body.link)
     const userId = req.params.id;
     const link = req.body.link;
     const name = req.body.name;
 
     Video.findOne({ creatorId: userId }, (err, videos) => {
         if (err) { return next(err); }
-        console.log(link)
         const newVideo = new Video({
             name,
             link,
@@ -46,6 +43,17 @@ router.post('/myvideos/:id', (req, res, next) => {
         })
     });
 })
+
+router.get('/delete/:id', (req, res) => {
+    const id = req.params.id;
+   console.log(id)
+  
+    Video.findByIdAndRemove(id, (err, product) => {
+      if (err){ return next(err); }
+      return res.redirect('/');
+    });
+  });
+  
 
 
 module.exports = router;
