@@ -1,5 +1,7 @@
-<div>
+
 <form action="/user/detail/<%= user._id %>/edit" method="POST">
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" value="<%= user.email %>">
     <label for="username">Name</label>
     <input type="text" id="username" name="username" value="<%= user.username %>">
     <label for="image-url">Image URL</label>
@@ -7,7 +9,8 @@
    <label for="description">Description</label>
     <textarea type="text" name="description" id="description"><%= user.description %></textarea>
   
-    <button type="submit">Update Product</button>
+    <button type="submit">Update</button>
+    <br>
+    <a href="/user/detail/<%= user._id %>">home</a>
   </form>
   
-</div>

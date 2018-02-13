@@ -25,7 +25,7 @@ router.get('/detail/:id', (req, res) => {
 
 router.get('/detail/:id/edit', (req, res) => {
   const userId = req.params.id;
-  
+
   User.findById(userId, (err, user) => {
     if (err) {
       return next(err);
@@ -37,14 +37,20 @@ router.get('/detail/:id/edit', (req, res) => {
 router.post('/detail/:id/edit', (req, res) => {
   const userId = req.params.id;
   const username = req.body.username;
-  console.log(req.body)
-  const updates = {username:req.body.username };
-  
+  const email = req.body.email;
+
+  const updates = {
+    username: username,
+    email: email
+  };
+
+  console.log(updates)
+
   User.findByIdAndUpdate(userId, updates, (err, user) => {
     if (err) {
       return next(err);
     }
-    res.render("editUser")
+    res.redirect('/')
   })
 })
 

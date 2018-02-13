@@ -20,7 +20,7 @@ authRoutes.post("/signup", (req, res, next) => {
     const email = req.body.email;
     const username = req.body.username;
     const password = req.body.password;
-    console.log("hola")
+    console.log(req.body)
 
     if (username === "" || password === "") {
         res.render("auth/signup", { message: "Indicate username and password" });
@@ -43,10 +43,10 @@ authRoutes.post("/signup", (req, res, next) => {
             email,
             username,
             password: hashPass,
-            profile_pic: {
-                pic_path: `/uploads/${req.file.filename}`,
-                pic_name: req.body.name
-            }
+            // profile_pic: {
+            //     pic_path: `/uploads/${req.file.filename}`,
+            //     pic_name: req.body.name
+            // }
         });
 
         newUser.save((err) => {
