@@ -6,6 +6,9 @@ const commentSchema = new Schema({
     authorId: {
         type: Schema.Types.ObjectId,
         ref: 'User',
+    }, videoId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Video',
     }
 })
 

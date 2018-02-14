@@ -1,5 +1,6 @@
-body {
-  padding: 50px;
+
+.main-container {
+  padding: 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -14,3 +15,9 @@ a {
   padding:8px 40px;
  
 }
+.display-vid{
+ float: left;
+}
+.form{
+  float: right;
+ }

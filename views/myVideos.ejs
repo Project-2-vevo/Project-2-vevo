@@ -1,0 +1,31 @@
+<div class="display-vid">
+<ul>
+  <% video.reverse().forEach((vid) => { %>
+    <li>
+      <%= vid.name %>
+        <br>
+        <a href="/video/delete/<%=vid._id%>">Delete Video</a>
+        <a href="/video/detail-video/<%=vid._id%>">Detail Video</a>
+        <br>
+        <br>
+        <iframe width="300" height="180" src="http://www.youtube.com/embed/<%= vid.link.slice(32,vid.link.length)%>" frameborder="0">
+        </iframe>
+       
+    </li>
+
+
+    <%  }) %>
+</ul>
+</div>
+<br>
+<div class="form">
+<form action="/video/myvideos/<%=user._id %>" method="POST" id="form-container">
+  <label for="link">video link</label>
+  <input id="link" type="text" name="link" placeholder="URL">
+  <br>
+    <label for="name">Video name</label>
+    <input id="name" type="text" name="name" placeholder="name">
+    <br>
+    <button>Link your video</button>
+  </form>
+</div>
