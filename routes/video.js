@@ -12,51 +12,67 @@ router.get('/', (req, res, next) => {
 /* CRUD -> READ DETAIL */
 router.get('/myvideos/:id', (req, res) => {
     const userId = req.params.id;
-    Video.find({ creatorId: userId }, (err, videos) => {
+    Video.find({ creatorId: userId }, (err, video) => {
         if (err) { return next(err); }
 
-        res.render('myVideos', { videos: videos });
+        res.render('myVideos', { video: video });
 
     })
 })
 //Detail of any video
 router.get('/detail-video/:id', (req, res) => {
     const videoId = req.params.id;
-    Video.findOne({ _id: videoId }).populate({ path: 'comments', populate: { path: 'authorId' } }).exec((err, video) => {
-        if (err) { return next(err); }
-        console.log(video)
-        res.render('detail-video', { video: video }, );
+    console.log(videoId)
+
+    Video.findOne({ _id: videoId }).populate({ path: 'comments', populate: { path: 'authorId' } }).then((video) => {
+        console.log(typeof(video.comments))
+        res.render('detail-video', { video: video });
     })
 
 })
 
-//CREO QUE NO SE PUEDEN HACER 2 GETS DE LA MISMA PÁGINA
+router.post('/detail-video/:id', (req, res) => {
+    const videoId = req.params.id
+    const userId = req.user._id
+    const content = req.body.content
 
-// router.get('/detail-video/:id', (req, res) => {
-//     const videoId = req.params.id;
-//     console.log(videoId)
-//     Comentario.find({ _id: videoId }, (err, comentario) => {
-//         if (err) { return next(err); }
-//         console.log("This is "+comentario)
-//         res.render('detail-video', { comentario: comentario }, );
+    new Comentario({
+        content,
+        authorId: userId,
+        videoId
+    })
+        .save()
+        .then((newCom) => {
+            console.log(newCom._id)
+            console.log(videoId)
 
+            Video.findByIdAndUpdate(
+                { _id: videoId },
+                { $push: { comments: newCom._id } },
+                { new: true })
 
-//     })
+                .then((videoUpdated) => {
+                    console.log(videoUpdated)
+                    res.redirect(`/video/detail-video/${videoId}`);
+                })
+        })
+})
 
-// })
 
 //Create new Video
+
 router.post('/myvideos/:id', (req, res, next) => {
     const userId = req.params.id;
     const link = req.body.link;
     const name = req.body.name;
-
-    Video.findOne({ creatorId: userId }, (err, videos) => {
+    const comments = []
+    Video.findOne({ creatorId: userId }, (err) => {
         if (err) { return next(err); }
         const newVideo = new Video({
             name,
             link,
-            creatorId: userId
+            creatorId: userId,
+            comments
         })
         newVideo.save((err) => {
             if (err) {
@@ -70,9 +86,9 @@ router.post('/myvideos/:id', (req, res, next) => {
 //Delete video
 router.get('/delete/:id', (req, res) => {
     const id = req.params.id;
-    console.log(id)
 
-    Video.findByIdAndRemove(id, (err, product) => {
+
+    Video.findByIdAndRemove(id, (err) => {
         if (err) { return next(err); }
         return res.redirect('/');
     });

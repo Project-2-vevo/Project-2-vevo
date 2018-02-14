@@ -1,10 +1,24 @@
 <div class="video">
-  <p>Video: <%=video.name %></p>
-  <br>
-  <iframe width="300" height="180" src="http://www.youtube.com/embed/<%= video.link.slice(32,video.link.length)%>" frameborder="0">
-  </iframe>
-  <p>@<%=video.comments.authorId.username %></p>
-  <p>
-      <%=video.comments.content %>
-  </p> 
+    <p>Video:
+        <%=video.name %>
+    </p>
+    <br>
+    <iframe width="300" height="180" src="http://www.youtube.com/embed/<%= video.link.slice(32,video.link.length)%>" frameborder="0">
+    </iframe>
+    <form action="/video/detail-video/<%=video._id%>" method="POST">
+
+        <label for="content">comment</label>
+        <input id="content" type="text" name="content" placeholder="Add a public comment">
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <%if(video.comments){%>
+        <%for(var i=0;i<video.comments.length;i++){%>
+            <p>
+                @<%=video.comments[i].authorId.username%>:<%=video.comments[i].content%>
+            </p>
+
+            <hr> 
+            <%}%>
+            <%}%>
 </div>
