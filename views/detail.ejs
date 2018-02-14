@@ -3,7 +3,7 @@
   <b>Name: </b><%=user.username %>
 </div>
 
-<%= user %>
+
 
 <div class="usermail">
   <b>Mail: </b><%= user.email %>
@@ -14,5 +14,5 @@
 <img height='200' class="avatar" src="/<%=user.picture %>" alt="">
 
 <br>
-<b><%=user.picture%></b>
+
 <button><a href="/user/detail/<%= user._id %>/edit">edit profile</a></button>
