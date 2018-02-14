@@ -3,4 +3,8 @@
   <br>
   <iframe width="300" height="180" src="http://www.youtube.com/embed/<%= video.link.slice(32,video.link.length)%>" frameborder="0">
   </iframe>
+  <p>@<%=video.comments.authorId.username %></p>
+  <p>
+      <%=video.comments.content %>
+  </p> 
 </div>

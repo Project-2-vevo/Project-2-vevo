@@ -4,7 +4,7 @@ const router = express.Router();
 const User = require("../models/User");
 const Comentario = require("../models/Comment");
 
-router.get('/', function (req, res, next) {
+router.get('/', (req, res, next) => {
     res.send('respond with a resource');
 });
 
@@ -22,14 +22,15 @@ router.get('/myvideos/:id', (req, res) => {
 //Detail of any video
 router.get('/detail-video/:id', (req, res) => {
     const videoId = req.params.id;
-    Video.findOne({ _id: videoId }, (err, video) => {
+    Video.findOne({ _id: videoId }).populate({ path: 'comments', populate: { path: 'authorId' } }).exec((err, video) => {
         if (err) { return next(err); }
+        console.log(video)
         res.render('detail-video', { video: video }, );
-
-
     })
 
-})//CREO QUE NO SE PUEDEN HACER 2 GETS DE LA MISMA PÁGINA
+})
+
+//CREO QUE NO SE PUEDEN HACER 2 GETS DE LA MISMA PÁGINA
 
 // router.get('/detail-video/:id', (req, res) => {
 //     const videoId = req.params.id;
