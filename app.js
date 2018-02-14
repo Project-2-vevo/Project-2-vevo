@@ -16,7 +16,7 @@ const {dbURL} = require('./config');
 mongoose.connect(dbURL)
         .then(() => debug(`Connected to ${dbURL}`))
         .catch(e => console.log(e))
-console.log("hola")
+
 
 const index = require('./routes/index');
 const auth = require('./routes/auth');
@@ -35,9 +35,11 @@ app.use(expressLayouts);
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'uploads')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(session({
   secret: "our-passport-local-strategy-app",
   resave: true,

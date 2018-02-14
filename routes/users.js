@@ -1,19 +1,21 @@
 var express = require('express')
 const User = require("../models/User");
-var router = express.Router();
 
+var router = express.Router();
+const multer = require('multer')
+const upload = multer({dest: __dirname + "/../uploads"});
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-  console.log('hola')
+  
   res.send('respond with a resource');
 });
 
 /* CRUD -> READ DETAIL */
 router.get('/detail/:id', (req, res) => {
   const userId = req.params.id;
-  console.log(userId)
 
-  User.findById(userId, (err, user) => {
+
+  User.findById(userId, (err, user, next) => {
     if (err) {
       return next(err);
     }
@@ -30,27 +32,35 @@ router.get('/detail/:id/edit', (req, res) => {
     if (err) {
       return next(err);
     }
-    res.render('editUser')
+    res.render('editUser');
+
   })
 })
 
-router.post('/detail/:id/edit', (req, res) => {
+router.post('/detail/:id/edit', upload.single('picture'), (req, res) => {
   const userId = req.params.id;
   const username = req.body.username;
   const email = req.body.email;
-
+  const image = req.file.filename
+  
+  // const default = req.file.filename;
   const updates = {
     username: username,
-    email: email
+    email: email,
+    picture: image
+    // imageUrl: imageUrl
+    // default: default
   };
-
-  console.log(updates)
+ 
 
   User.findByIdAndUpdate(userId, updates, (err, user) => {
     if (err) {
       return next(err);
     }
-    res.redirect('/')
+ 
+  
+    res.redirect(`/user/detail/${userId}`)
+    // res.redirect("/user/detail/"+userId)
   })
 })
 

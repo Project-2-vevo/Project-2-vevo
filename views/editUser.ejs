@@ -1,15 +1,12 @@
 
-<form action="/user/detail/<%= user._id %>/edit" method="POST">
+<form action="/user/detail/<%= user._id %>/edit" method="POST" enctype="multipart/form-data">
+   
     <label for="email">Email</label>
     <input type="text" id="email" name="email" value="<%= user.email %>">
     <label for="username">Name</label>
     <input type="text" id="username" name="username" value="<%= user.username %>">
-    <label for="image-url">Image URL</label>
-    <input type="text" name="imageUrl" id="image-url" value="<%= user.imageUrl %>">
-   <label for="description">Description</label>
-    <textarea type="text" name="description" id="description"><%= user.description %></textarea>
-  
-    <button type="submit">Update</button>
+    <input type="file" name="picture"  value="<%=user.picture %>">
+    <button type="submit">update</button>
     <br>
     <a href="/user/detail/<%= user._id %>">home</a>
   </form>

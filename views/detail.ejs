@@ -3,14 +3,16 @@
   <b>Name: </b><%=user.username %>
 </div>
 
+<%= user %>
+
 <div class="usermail">
   <b>Mail: </b><%= user.email %>
 </div>
 <br>
 <b>User avatar: </b>
 <br>
-<img class="avatar" src="<%=user.profile_pic.pic_path %>" alt="">
+<img height='200' class="avatar" src="/<%=user.picture %>" alt="">
 
 <br>
-<b><%=user.profile_pic.pic_name%></b>
+<b><%=user.picture%></b>
 <button><a href="/user/detail/<%= user._id %>/edit">edit profile</a></button>
