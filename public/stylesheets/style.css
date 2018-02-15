@@ -28,7 +28,20 @@ a {
  }
 
 
- form , .video-list{
+ form, .video-list{
    display: inline-block;
    margin:20px;
+   padding-left: 50px;
+
  }
+ h2,form{
+  
+   text-align: center;
+  
+ }
+ .center-form{
+   padding-left: 40%;
+ }
+.login{
+  width: 750px;
+}
