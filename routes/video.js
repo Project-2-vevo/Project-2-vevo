@@ -108,6 +108,7 @@ router.get('/delete/:id', (req, res) => {
 router.get('/delete-comment/:id', (req, res) => {
     const commentId = req.params.id;
     const userId = req.user._id;
+    console.log(req.user)
     console.log(res)
     Comentario.findByIdAndRemove(commentId, (err) => {
         if (err) { return next(err); }

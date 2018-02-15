@@ -43,10 +43,7 @@ authRoutes.post("/signup", (req, res, next) => {
             email,
             username,
             password: hashPass,
-            // profile_pic: {
-            //     pic_path: `/uploads/${req.file.filename}`,
-            //     pic_name: req.body.name
-            // }
+           
         });
 
         newUser.save((err) => {
@@ -65,7 +62,7 @@ authRoutes.get("/login", (req, res, next) => {
 });
 
 authRoutes.post("/login", passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/video/list",
     failureRedirect: "/auth/login"
 }));
 authRoutes.get("/logout", (req, res) => {

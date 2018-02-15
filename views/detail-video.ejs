@@ -8,21 +8,30 @@
     <br>
     <form action="/video/detail-video/<%=video._id%>" method="POST">
 
-        <label for="content">@<%=user.username%>:</label>
+        <label for="content">@
+            <%=user.username%>:</label>
         <input id="content" type="text" name="content" placeholder="Add a public comment">
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-</form><br>
-<%if(video.comments){%>
-    <% video.comments.reverse().forEach((vid) => { %>
-        <p>
-@<%= vid.authorId.username %>:<%=vid.content%><form action="/video/delete-comment/<%=vid._id%>"><button type="submit" class="btn btn-danger">delete</button> </form>
-        </p>
-           
+    </form>
+    <br>
+    <%if(video.comments){%>
+        <% video.comments.reverse().forEach((co) => { %>
+            <p>
+                @
+                <%= co.authorId.username %>:
+                    <%=co.content%>
+                    
+                          <form action="/video/delete-comment/<%=co._id%>">
+                         
+                            <button type="submit" class="btn btn-danger">delete</button>
+                        </form>
+                        
+            </p>
 
-            <hr> 
+            <hr>
             <%})%>
-            <%}%>
+                <%}%>
 
 </div>
