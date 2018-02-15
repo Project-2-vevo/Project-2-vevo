@@ -1,4 +1,3 @@
-
 .main-container {
   padding: 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -18,6 +17,15 @@ a {
 .display-vid{
  float: left;
 }
-.form{
+.form-myvideos{
   float: right;
+  position:fixed;
+  top:100px;
+  left:500px;
  }
+ .center-box, .form-group{
+   text-align: center;
+ }
+
+
+ 

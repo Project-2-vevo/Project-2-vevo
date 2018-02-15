@@ -1,3 +1,4 @@
+require('dotenv').load()
 const mongoose = require('mongoose');
 const User = require('../models/User');
 const Video = require('../models/Videos');

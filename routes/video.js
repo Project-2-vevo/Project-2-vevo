@@ -5,6 +5,7 @@ const User = require("../models/User");
 const Comentario = require("../models/Comment");
 
 router.get('/', (req, res, next) => {
+    
     res.send('respond with a resource');
 });
 
@@ -25,7 +26,6 @@ router.get('/detail-video/:id', (req, res) => {
     console.log(videoId)
 
     Video.findOne({ _id: videoId }).populate({ path: 'comments', populate: { path: 'authorId' } }).then((video) => {
-        console.log(typeof(video.comments))
         res.render('detail-video', { video: video });
     })
 
