@@ -9,7 +9,11 @@ router.get('/', (req, res, next) => {
     res.send('respond with a resource');
 });
 
-
+router.get("/list",(req,res) =>{
+   Video.find().populate("creatorId")
+   .then(videos => res.render('videos/list', {videos: videos}))
+   .catch()
+})
 /* CRUD -> READ DETAIL */
 router.get('/myvideos/:id', (req, res) => {
     const userId = req.params.id;
@@ -20,6 +24,16 @@ router.get('/myvideos/:id', (req, res) => {
 
     })
 })
+
+// /* CRUD -> READ ALL */
+// router.get('/', (req, res, next) => {
+//     Product.find().exec((err, products) => {
+//       res.render('products/index', {
+//         products: products
+//       });
+//     });
+//   });
+  
 //Detail of any video
 router.get('/detail-video/:id', (req, res) => {
     const videoId = req.params.id;
@@ -75,7 +89,7 @@ router.post('/myvideos/:id', (req, res, next) => {
             if (err) {
                 res.render("myVideos", { message: "Something went wrong" });
             } else {
-                res.redirect(`/video/myvideos/${userId}`);
+                res.redirect("/video/list");
             }
         })
     });

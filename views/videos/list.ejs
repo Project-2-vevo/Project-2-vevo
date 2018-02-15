@@ -1,0 +1,10 @@
+<h1>Video List</h1>
+
+<% videos.reverse().forEach(v => { %>
+    <h2><%=v.name%></h2>
+    <iframe width="300" height="180" src="http://www.youtube.com/embed/<%= v.link.slice(32,v.link.length)%>" frameborder="0">
+    </iframe>
+    <p>By:@<%=v.creatorId.username%></p>
+    <a href="/video/detail-video/<%=v._id%>">detail</a>
+    <%=v%>
+<% }) %>
