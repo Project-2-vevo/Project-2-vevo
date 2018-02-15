@@ -63,7 +63,6 @@ router.post('/detail-video/:id', (req, res) => {
                 { new: true })
 
                 .then((videoUpdated) => {
-                    console.log("Hola" + videoUpdated)
                     res.redirect(`/video/detail-video/${videoId}`);
                 })
         })
@@ -105,13 +104,14 @@ router.get('/delete/:id', (req, res) => {
 });
 
 //Delete comment
-router.get('/delete-comment/:id', (req, res) => {
+router.post('/delete-comment/:id', (req, res) => {
     const commentId = req.params.id;
+    const videoId = req.body.videoId;
     const userId = req.user._id;
-    console.log(res)
+    
     Comentario.findByIdAndRemove(commentId, (err) => {
         if (err) { return next(err); }
-        return res.redirect(`/`);
+        return res.redirect(`/video/detail-video/${videoId}`);
     });
 })
 
