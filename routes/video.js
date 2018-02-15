@@ -5,7 +5,6 @@ const User = require("../models/User");
 const Comentario = require("../models/Comment");
 
 router.get('/', (req, res, next) => {
-
     res.send('respond with a resource');
 });
 
@@ -23,17 +22,7 @@ router.get('/myvideos/:id', (req, res) => {
         res.render('myVideos', { video: video });
 
     })
-})
-
-// /* CRUD -> READ ALL */
-// router.get('/', (req, res, next) => {
-//     Product.find().exec((err, products) => {
-//       res.render('products/index', {
-//         products: products
-//       });
-//     });
-//   });
-  
+})  
 //Detail of any video
 router.get('/detail-video/:id', (req, res) => {
     const videoId = req.params.id;
