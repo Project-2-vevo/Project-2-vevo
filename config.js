@@ -1,4 +1,5 @@
+require('dotenv').load()
 module.exports = {
-    dbURL: 'mongodb://localhost/project-2'
+    dbURL:process.env.MONGO_URL
     
 }
