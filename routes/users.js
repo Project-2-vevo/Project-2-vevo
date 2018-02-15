@@ -43,13 +43,10 @@ router.post('/detail/:id/edit', upload.single('picture'), (req, res) => {
   const email = req.body.email;
   const image = req.file.filename
   
-  // const default = req.file.filename;
   const updates = {
     username: username,
     email: email,
     picture: image
-    // imageUrl: imageUrl
-    // default: default
   };
  
 
@@ -60,7 +57,7 @@ router.post('/detail/:id/edit', upload.single('picture'), (req, res) => {
  
   
     res.redirect(`/user/detail/${userId}`)
-    // res.redirect("/user/detail/"+userId)
+    
   })
 })
 

@@ -5,7 +5,6 @@ const User = require("../models/User");
 const Comentario = require("../models/Comment");
 
 router.get('/', (req, res, next) => {
-
     res.send('respond with a resource');
 });
 
@@ -23,17 +22,7 @@ router.get('/myvideos/:id', (req, res) => {
         res.render('myVideos', { video: video });
 
     })
-})
-
-// /* CRUD -> READ ALL */
-// router.get('/', (req, res, next) => {
-//     Product.find().exec((err, products) => {
-//       res.render('products/index', {
-//         products: products
-//       });
-//     });
-//   });
-  
+})  
 //Detail of any video
 router.get('/detail-video/:id', (req, res) => {
     const videoId = req.params.id;
@@ -63,7 +52,6 @@ router.post('/detail-video/:id', (req, res) => {
                 { new: true })
 
                 .then((videoUpdated) => {
-                    console.log("Hola" + videoUpdated)
                     res.redirect(`/video/detail-video/${videoId}`);
                 })
         })
@@ -105,14 +93,14 @@ router.get('/delete/:id', (req, res) => {
 });
 
 //Delete comment
-router.get('/delete-comment/:id', (req, res) => {
+router.post('/delete-comment/:id', (req, res) => {
     const commentId = req.params.id;
+    const videoId = req.body.videoId;
     const userId = req.user._id;
-    console.log(req.user)
-    console.log(res)
+    
     Comentario.findByIdAndRemove(commentId, (err) => {
         if (err) { return next(err); }
-        return res.redirect(`/`);
+        return res.redirect(`/video/detail-video/${videoId}`);
     });
 })
 

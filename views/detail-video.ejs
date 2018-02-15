@@ -17,18 +17,17 @@
     </form>
     <br>
     <%if(video.comments){%>
-        <% video.comments.reverse().forEach((co) => { %>
+        <% video.comments.reverse().forEach((vid) => { %>
             <p>
                 @
-                <%= co.authorId.username %>:
-                    <%=co.content%>
-                    
-                          <form action="/video/delete-comment/<%=co._id%>">
-                         
+                <%= vid.authorId.username %>:
+                    <%=vid.content%>
+                        <form action="/video/delete-comment/<%=vid._id%>" method="POST">
+                            <input hidden name=videoId value=<%=video._id%>>
                             <button type="submit" class="btn btn-danger">delete</button>
                         </form>
-                        
             </p>
+
 
             <hr>
             <%})%>
