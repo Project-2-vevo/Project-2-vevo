@@ -49,7 +49,7 @@ router.post('/detail-video/:id', (req, res) => {
                 { new: true })
 
                 .then((videoUpdated) => {
-                    console.log(videoUpdated)
+                    console.log("Hola" + videoUpdated)
                     res.redirect(`/video/detail-video/${videoId}`);
                 })
         })
@@ -75,7 +75,7 @@ router.post('/myvideos/:id', (req, res, next) => {
             if (err) {
                 res.render("myVideos", { message: "Something went wrong" });
             } else {
-                res.redirect("/");
+                res.redirect(`/video/myvideos/${userId}`);
             }
         })
     });
@@ -83,20 +83,21 @@ router.post('/myvideos/:id', (req, res, next) => {
 //Delete video
 router.get('/delete/:id', (req, res) => {
     const id = req.params.id;
-
-
+    const userId = req.user._id
     Video.findByIdAndRemove(id, (err) => {
         if (err) { return next(err); }
-        return res.redirect('/');
+        return res.redirect(`/video/myvideos/${userId}`);
     });
 });
 
 //Delete comment
 router.get('/delete-comment/:id', (req, res) => {
     const commentId = req.params.id;
+    const userId = req.user._id;
+    console.log(res)
     Comentario.findByIdAndRemove(commentId, (err) => {
         if (err) { return next(err); }
-        return res.redirect('/');
+        return res.redirect(`/`);
     });
 })
 

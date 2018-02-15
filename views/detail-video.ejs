@@ -13,18 +13,16 @@
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-</form>
+</form><br>
 <%if(video.comments){%>
-    <%for(var i=0;i<video.comments.length;i++){%>
+    <% video.comments.reverse().forEach((vid) => { %>
         <p>
-            @<%=video.comments[i].authorId.username%>:<%=video.comments[i].content%>
+@<%= vid.authorId.username %>:<%=vid.content%><form action="/video/delete-comment/<%=vid._id%>"><button type="submit" class="btn btn-danger">delete</button> </form>
         </p>
-            <p><%=video.comments[i]._id%></p>
-        <form action="/video/delete-comment/<%=video.comments[i]._id%>">
-            <button type="submit" class="btn btn-danger">delete</button>
+           
 
             <hr> 
-            <%}%>
+            <%})%>
             <%}%>
 
 </div>
