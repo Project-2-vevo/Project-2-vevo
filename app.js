@@ -23,7 +23,7 @@ const auth = require('./routes/auth');
 const user = require('./routes/users')
 const video = require('./routes/video')
 
-const app = express();
+const app = express();  
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

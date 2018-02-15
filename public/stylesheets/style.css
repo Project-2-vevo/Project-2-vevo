@@ -28,4 +28,6 @@ a {
  }
 
 
- 
+ form{
+   display: inline-block
+ }

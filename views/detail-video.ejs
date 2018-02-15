@@ -5,20 +5,26 @@
     <br>
     <iframe width="300" height="180" src="https://www.youtube.com/embed/<%= video.link.slice(32,video.link.length)%>" frameborder="0">
     </iframe>
+    <br>
     <form action="/video/detail-video/<%=video._id%>" method="POST">
 
-        <label for="content">comment</label>
+        <label for="content">@<%=user.username%>:</label>
         <input id="content" type="text" name="content" placeholder="Add a public comment">
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    <%if(video.comments){%>
-        <%for(var i=0;i<video.comments.length;i++){%>
-            <p>
-                @<%=video.comments[i].authorId.username%>:<%=video.comments[i].content%>
-            </p>
+</form>
+<%if(video.comments){%>
+    <%for(var i=0;i<video.comments.length;i++){%>
+        <p>
+            @<%=video.comments[i].authorId.username%>:<%=video.comments[i].content%>
+        </p>
+            <p><%=video.comments[i]._id%></p>
+        <form action="/video/delete-comment/<%=video.comments[i]._id%>">
+            <button type="submit" class="btn btn-danger">delete</button>
 
             <hr> 
             <%}%>
             <%}%>
+
 </div>

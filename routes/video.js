@@ -5,7 +5,7 @@ const User = require("../models/User");
 const Comentario = require("../models/Comment");
 
 router.get('/', (req, res, next) => {
-    
+
     res.send('respond with a resource');
 });
 
@@ -23,14 +23,13 @@ router.get('/myvideos/:id', (req, res) => {
 //Detail of any video
 router.get('/detail-video/:id', (req, res) => {
     const videoId = req.params.id;
-    console.log(videoId)
 
     Video.findOne({ _id: videoId }).populate({ path: 'comments', populate: { path: 'authorId' } }).then((video) => {
         res.render('detail-video', { video: video });
     })
 
 })
-
+//post new comments
 router.post('/detail-video/:id', (req, res) => {
     const videoId = req.params.id
     const userId = req.user._id
@@ -43,8 +42,6 @@ router.post('/detail-video/:id', (req, res) => {
     })
         .save()
         .then((newCom) => {
-            console.log(newCom._id)
-            console.log(videoId)
 
             Video.findByIdAndUpdate(
                 { _id: videoId },
@@ -94,6 +91,13 @@ router.get('/delete/:id', (req, res) => {
     });
 });
 
-
+//Delete comment
+router.get('/delete-comment/:id', (req, res) => {
+    const commentId = req.params.id;
+    Comentario.findByIdAndRemove(commentId, (err) => {
+        if (err) { return next(err); }
+        return res.redirect('/');
+    });
+})
 
 module.exports = router;
