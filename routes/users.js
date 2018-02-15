@@ -39,27 +39,32 @@ router.get('/detail/:id/edit', (req, res) => {
 
 router.post('/detail/:id/edit', upload.single('picture'), (req, res) => {
   const userId = req.params.id;
-  const username = req.body.username;
-  const email = req.body.email;
-  const image = req.file.filename
-  
-  const updates = {
-    username: username,
-    email: email,
-    picture: image
+  User.findById(userId, (err, img) => {
+    if (req.file === undefined) {
+      console.log("hola");
+      a = img.picture;
+    } else {
+      console.log("ciao");
+      a = `../uploads/${req.file.filename}`;
+    }
+    let updates = {
+      username : req.body.username,
+      email:req.body.email,
+     picture: a
   };
- 
+
 
   User.findByIdAndUpdate(userId, updates, (err, user) => {
     if (err) {
-      return next(err);
-    }
+      console.log(err);
+    } 
  
   
     res.redirect(`/user/detail/${userId}`)
     
   })
-})
+  })
+  });
 
 
 module.exports = router;

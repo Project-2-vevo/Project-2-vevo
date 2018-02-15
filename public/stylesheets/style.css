@@ -17,12 +17,7 @@ a {
 .display-vid{
  float: left;
 }
-.form-myvideos{
-  float: right;
-  position:fixed;
-  top:100px;
-  left:500px;
- }
+
  .center-box, .form-group{
    text-align: center;
  }
@@ -44,4 +39,8 @@ a {
  }
 .login{
   width: 750px;
+}
+.form-edit-profile{
+  display: inline-block;
+  padding-left: 33%;
 }
