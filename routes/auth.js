@@ -20,7 +20,6 @@ authRoutes.post("/signup", (req, res, next) => {
     const email = req.body.email;
     const username = req.body.username;
     const password = req.body.password;
-    console.log(req.body)
 
     if (username === "" || password === "") {
         res.render("auth/signup", { message: "Indicate username and password" });

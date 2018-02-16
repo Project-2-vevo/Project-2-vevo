@@ -16,6 +16,7 @@ a {
 }
 .display-vid{
  float: left;
+ margin-bottom: 100px;
 }
 
  .center-box, .form-group{
@@ -54,14 +55,17 @@ form{
 }
 .signup{
   text-align: center;
+  padding-bottom: 150px;
 }
 .inline-block{
   display: inline-block;
+  background-color: rgb(194, 194, 194);
+
 }
-.footer{
+/* .footer{
   background-color: rgb(194, 194, 194);
   
-}
+} */
 .white{
  color:black;
 }
@@ -77,4 +81,14 @@ font-size: 18px;
   font-size:30px;
   color:white;  
   
+}
+.padding-bottom{
+  padding-bottom: 33px;
+}
+.row{
+  width: 101%;
+  
+}
+.login{
+  padding-bottom: 275px;
 }
