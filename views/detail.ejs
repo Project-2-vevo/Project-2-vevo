@@ -1,12 +1,10 @@
-<h1>View your profile</h1>
-<button><a href="/user/detail/<%= user._id %>/edit">Edit Profile</a></button>
+<h2>This is your Profile <%=user.username.toUpperCase()%></h2>
+<div class="signup">
+<button class="btn"><a href="/user/detail/<%= user._id %>/edit">Edit Profile</a></button>
 <div class="username">
   <b>Name: </b>
   <%=user.username %>
 </div>
-
-
-
 <div class="usermail">
   <b>Mail: </b>
   <%= user.email %>
@@ -16,5 +14,5 @@
 <br>
 <img height='200' class="avatar" src="/<%=user.picture %>" alt="">
 
-<br>
+</div>
 

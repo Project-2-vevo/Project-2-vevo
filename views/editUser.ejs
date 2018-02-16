@@ -1,13 +1,12 @@
-
 <form class="form-edit-profile" action="/user/detail/<%= user._id %>/edit" method="POST" enctype="multipart/form-data">
-  
+
   <label for="email">Email</label>
   <input type="text" id="email" name="email" value="<%= user.email %>">
   <label for="username">Name</label>
   <input type="text" id="username" name="username" value="<%= user.username %>">
-  <input type="file" name="picture"  value="<%=user.picture %>">
+  <input type="file" name="picture" value="<%=user.picture %>">
   <button class="btn btn-success" type="submit">update</button>
-  <a href="/user/detail/<%= user._id %>">Back</a></button>
+  <a href="/user/detail/<%= user._id %>">Back</a>
+  </button>
   <br>
 </form>
-  

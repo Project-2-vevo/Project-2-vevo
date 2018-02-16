@@ -3,9 +3,12 @@
         <%=video.name %>
     </p>
     <br>
-    <iframe width="300" height="180" src="https://www.youtube.com/embed/<%= video.link.slice(32,video.link.length)%>" frameborder="0">
+    <iframe width="480" height="260" src="https://www.youtube.com/embed/<%= video.link.slice(32,video.link.length)%>" frameborder="0">
     </iframe>
     <br>
+    <p>
+        <!-- <%=Math.floor(Math.random()* (5000 - 100) + 100)%> -->
+    </p>
     <form action="/video/detail-video/<%=video._id%>" method="POST">
 
         <label for="content">@
@@ -16,18 +19,18 @@
     </form>
     <br>
     <%if(video.comments){%>
-        <% video.comments.reverse().forEach((vid) => { %>
+        <% video.comments.reverse().forEach((co) => { %>
             <p>
-                @
-                <%= vid.authorId.username %>:
-                    <%=vid.content%>
-                        <form action="/video/delete-comment/<%=vid._id%>" method="POST">
-                            <input hidden name=videoId value=<%=video._id%>>
-                            <button type="submit" class="btn btn-danger">delete</button>
-                        </form>
+                @<%= co.authorId.username %>:
+                    <%=co.content%>
+                        <%if(user._id.toString()==co.authorId._id.toString()){%>
+                            <form action="/video/delete-comment/<%=co._id%>" method="POST">
+                                <input hidden name=videoId value=<%=video._id%>>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                            <%}%>
             </p>
             <hr>
             <%})%>
                 <%}%>
-
 </div>

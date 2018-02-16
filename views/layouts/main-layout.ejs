@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <title>Project2</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
@@ -14,14 +15,14 @@
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-        aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <img src="https://s3.amazonaws.com/media-p.slid.es/uploads/820047/images/4613628/hola.png" width="100px" height="48px"></img>
-        
+          aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img src="https://s3.amazonaws.com/media-p.slid.es/uploads/820047/images/4613628/hola.png" width="100px" height="48px"></img>
+
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -35,18 +36,28 @@
         <% if (user) { %>
 
           <ul class="nav navbar-nav navbar-right">
-            <li> <a href="/video/myvideos/<%= user._id%>">Upload Video</a> </li>
-            <li> <a href="/user/detail/<%= user._id%>">Profile</a> </li>
-            <li> <a href="/auth/logout">Logout</a> </li>
+            <li>
+              <a href="/video/myvideos/<%= user._id%>">Upload Video</a>
+            </li>
+            <li>
+              <a href="/user/detail/<%= user._id%>"><%=user.username.toUpperCase()%>  </a>
+            </li>
+            <li>
+              <a href="/auth/logout">Logout</a>
+            </li>
           </ul>
           <% }else{%>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/auth/login">Login</a></li>
-                <li><a href="/auth/signup">Signup</a></li>
+              <li>
+                <a href="/auth/login">Login</a>
+              </li>
+              <li>
+                <a href="/auth/signup">Signup</a>
+              </li>
+            </ul>
+            <% } %>
+              </li>
               </ul>
-         <% } %>
-        </li>
-        </ul>
       </div>
       <!-- /.navbar-collapse -->
     </div>
@@ -56,10 +67,30 @@
   <div class="main-container">
     <%- body -%>
   </div>
+      
+  <footer>
+    
+          <div class="row footer">
+            <div class="col-md-6 inline-block">
+              
+              
+              
+            </div>
+                <div class="col-md-6 inline-block">
+                 <p  class="footer-text">Contact us:</p>  
+                 <a class="white" href="https://www.linkedin.com/in/enriquehernandezsegura/">Enrique Hernández</a><br>
+                 <a class="white" href="https://www.linkedin.com/in/albertos%C3%A1nchezplaza/">Alberto Sánchez</a>
+    
+                </div>
+            </div>  
+  </footer>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>

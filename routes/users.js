@@ -1,7 +1,6 @@
-var express = require('express')
+const express = require('express')
 const User = require("../models/User");
-
-var router = express.Router();
+const router = express.Router();
 const multer = require('multer')
 const upload = multer({dest: __dirname + "/../uploads"});
 /* GET users listing. */
@@ -51,20 +50,17 @@ router.post('/detail/:id/edit', upload.single('picture'), (req, res) => {
       username : req.body.username,
       email:req.body.email,
      picture: a
-  };
+    };
 
-
-  User.findByIdAndUpdate(userId, updates, (err, user) => {
-    if (err) {
-      console.log(err);
-    } 
- 
-  
-    res.redirect(`/user/detail/${userId}`)
+    User.findByIdAndUpdate(userId, updates, (err, user) => {
+     if (err) {
+      return next(err);
+      } 
+      res.redirect(`/user/detail/${userId}`)
     
-  })
-  })
+    });
   });
+});
 
 
 module.exports = router;
